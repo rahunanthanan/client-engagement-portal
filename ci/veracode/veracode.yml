@@ -1,0 +1,14 @@
+# ILLUSTRATIVE Veracode configuration. Credentials come from CI environment variables only.
+static:
+  package: reports/veracode-upload.zip
+  policy: "Client Engagement Policy"
+  fail_on_policy_violation: true
+  exclude:
+    - "src/mocks/**"
+    - "src/test/**"
+    - "**/__tests__/**"
+    - "e2e/**"
+sca:
+  manifest: pnpm-lock.yaml
+  fail_on_severity: high
+  ignore_dev_dependencies: true

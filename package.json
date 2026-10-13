@@ -1,0 +1,82 @@
+{
+  "name": "client-engagement-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sample staff portal for client onboarding, service requests and operational workflows. Fictional data only.",
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm run typecheck && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "analyze": "vite build --mode analyze && node scripts/report-bundle-size.mjs",
+    "bundle:report": "node scripts/report-bundle-size.mjs",
+    "ci": "pnpm run lint && pnpm run typecheck && pnpm run test:coverage && vite build"
+  },
+  "dependencies": {
+    "@bpmn-io/form-js": "2.1.1",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/icons-material": "7.3.11",
+    "@mui/material": "7.3.11",
+    "@reduxjs/toolkit": "2.13.0",
+    "@tanstack/react-query": "5.104.2",
+    "bpmn-js": "18.31.0",
+    "dmn-js": "17.12.3",
+    "preact": "10.29.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-redux": "9.3.0",
+    "react-router": "7.18.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "1.64.0",
+    "@swc/core": "1.16.18",
+    "@swc/jest": "0.2.39",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "6.10.0",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/jest": "30.0.0",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "jest-fixed-jsdom": "0.0.11",
+    "jest-junit": "16.0.0",
+    "msw": "2.15.0",
+    "sass": "1.105.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2",
+    "vite": "7.3.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@swc/core",
+      "msw"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

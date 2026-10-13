@@ -1,0 +1,19 @@
+# `oc apply -k deploy` (or `kubectl apply -k deploy`). The nginx config is generated from the
+# same files baked into the image, so the cluster can change headers without a rebuild.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - openshift/deployment.yaml
+  - openshift/service.yaml
+  - openshift/route.yaml
+  - openshift/hpa.yaml
+  - openshift/networkpolicy.yaml
+  - openshift/poddisruptionbudget.yaml
+configMapGenerator:
+  - name: client-engagement-portal-nginx
+    files:
+      - default.conf=nginx/default.conf
+      - security-headers.inc=nginx/security-headers.inc
+images:
+  - name: image-registry.example.internal/client-engagement/client-engagement-portal
+    newTag: REPLACE_TAG

@@ -1,0 +1,81 @@
+// Global styles that MUI does not own. Colours come from the shared tokens via CSS custom
+// properties injected at runtime (see AppProviders), so SCSS never hard-codes brand values.
+
+@use 'sass:math';
+
+$gutter: 8px;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--cep-font-family);
+  background: var(--cep-color-surface);
+}
+
+// Visually hidden but available to screen readers.
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// ---- bpmn-js / dmn-js integration -------------------------------------------------------
+.cep-diagram {
+  height: 380px;
+  border: 1px solid var(--cep-color-border);
+  border-radius: var(--cep-radius-md);
+  background: #fff;
+
+  &--tall {
+    height: 560px;
+  }
+}
+
+// Current BPMN activity
+.cep-current .djs-visual > :nth-child(1) {
+  stroke: var(--cep-color-highlight) !important;
+  stroke-width: 4px !important;
+  fill: #fff3e0 !important;
+}
+
+// Completed BPMN activities
+.cep-completed .djs-visual > :nth-child(1) {
+  stroke: var(--cep-color-success) !important;
+  fill: #edf7ee !important;
+}
+
+// Matched DMN rule row
+.cep-dmn .cep-matched-rule {
+  background: #fff3e0 !important;
+  outline: 2px solid var(--cep-color-highlight);
+  outline-offset: -2px;
+}
+
+.cep-dmn {
+  overflow-x: auto;
+  padding: math.div($gutter, 2) $gutter;
+  border: 1px solid var(--cep-color-border);
+  border-radius: var(--cep-radius-md);
+  background: #fff;
+}
+
+.cep-formjs {
+  border: 1px solid var(--cep-color-border);
+  border-radius: var(--cep-radius-md);
+  background: #fff;
+  min-height: 420px;
+}
+
+@media print {
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+}

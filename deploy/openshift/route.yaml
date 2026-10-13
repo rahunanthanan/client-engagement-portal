@@ -1,0 +1,17 @@
+# ILLUSTRATIVE: TLS terminates at the router (edge). The host is a placeholder.
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: client-engagement-portal
+  annotations:
+    haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains
+spec:
+  host: client-engagement-portal.apps.example.internal
+  to:
+    kind: Service
+    name: client-engagement-portal
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
